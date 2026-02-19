@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace RPWebDevelopment\WebviewDetect\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class WebviewDetectCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'webview-detect';
 
     public $description = 'My command';
 

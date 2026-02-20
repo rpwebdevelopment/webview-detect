@@ -1,19 +1,11 @@
-# Webview detection package
+# Laravel Webview Detect
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rpwebdevelopment/webview-detect.svg?style=flat-square)](https://packagist.org/packages/rpwebdevelopment/webview-detect)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/rpwebdevelopment/webview-detect/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/rpwebdevelopment/webview-detect/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/rpwebdevelopment/webview-detect/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/rpwebdevelopment/webview-detect/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/rpwebdevelopment/webview-detect.svg?style=flat-square)](https://packagist.org/packages/rpwebdevelopment/webview-detect)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/webview-detect.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/webview-detect)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Package designed to handle parsing of User-Agent headers to determine if users are accessing applications vie WebView or not.
 
 ## Installation
 
@@ -23,61 +15,52 @@ You can install the package via composer:
 composer require rpwebdevelopment/webview-detect
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="webview-detect-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="webview-detect-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="webview-detect-views"
-```
-
 ## Usage
 
+Basic usage is as follows:
+
 ```php
-$webviewDetect = new RPWebDevelopment\WebviewDetect();
-echo $webviewDetect->echoPhrase('Hello, RPWebDevelopment!');
+use RPWebDevelopment\WebviewDetect\Facades\WebviewDetect;
+
+$userAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148';
+
+$isWebView = WebviewDetect::forUserAgent($userAgent)->isWebView();
 ```
 
-## Testing
+Additionally we can initialise the facade with a request for simplified handling within controller/middleware classes:
 
-```bash
-composer test
+```php
+namespace App\Http\Middleware;
+
+use Illuminate\Http\Request;
+use RPWebDevelopment\WebviewDetect\Facades\WebviewDetect;
+
+class FooMiddleware
+{
+    public function handle(Request $request, Closure $next)
+    {
+        $isWebview = WebviewDetect::forRequest($request)->isWebView();
+        
+        // business logic
+        
+        return $next($request);
+    }
+}
 ```
 
-## Changelog
+## Notes
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+While efforts have been taken to make the functionality as comprehensive and reliable as possible there will undoubtedly 
+be edge cases that have been missed (or future browsers) that are incorrectly validated. As such it is recommended to treat 
+responses as advisory only.
 
 ## Credits
 
 - [Richard Porter](https://github.com/rpwebdevelopment)
-- [All Contributors](../../contributors)
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## License
 

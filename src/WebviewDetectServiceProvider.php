@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RPWebDevelopment\WebviewDetect;
 
 use Spatie\LaravelPackageTools\Package;

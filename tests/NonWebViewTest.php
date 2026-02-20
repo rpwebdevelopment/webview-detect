@@ -42,7 +42,7 @@ it('can correctly identify non webview requests', function () {
     $service = new WebviewDetectService();
 
     foreach ($userAgents as $userAgent) {
-        $result = $service->forUserAgent($userAgent);
+        $result = $service->forUserAgent($userAgent)->isWebView();
 
         expect($result)->toBeFalse();
     }

@@ -1,12 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RPWebDevelopment\WebviewDetect\Facades;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 use RPWebDevelopment\WebviewDetect\Services\WebviewDetectService;
 
 /**
- * @see \RPWebDevelopment\WebviewDetect\WebviewDetect
+ * @see WebviewDetectService
+ *
+ * @method static WebviewDetectService forRequest(Request $request)
+ * @method static WebviewDetectService forUserAgent(string $userAgent)
+ * @method static bool isWebView()
  */
 class WebviewDetect extends Facade
 {

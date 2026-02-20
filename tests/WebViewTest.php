@@ -27,7 +27,7 @@ it('can correctly identify iOS webview requests', function () {
     $service = new WebviewDetectService();
 
     foreach ($userAgents as $userAgent) {
-        $result = $service->forUserAgent($userAgent);
+        $result = $service->forUserAgent($userAgent)->isWebView();
         expect($result)->toBeTrue();
     }
 });
@@ -43,7 +43,7 @@ it('can correctly identify android webview requests', function () {
     $service = new WebviewDetectService();
 
     foreach ($userAgents as $userAgent) {
-        $result = $service->forUserAgent($userAgent);
+        $result = $service->forUserAgent($userAgent)->isWebView();
         expect($result)->toBeTrue();
     }
 });

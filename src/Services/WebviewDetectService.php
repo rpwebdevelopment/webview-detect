@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RPWebDevelopment\WebviewDetect\Services;
 
+use Exception;
 use Illuminate\Http\Request;
 use RPWebDevelopment\WebviewDetect\Traits\HasBrowserDetection;
 use RPWebDevelopment\WebviewDetect\Traits\HasDeviceDetection;
@@ -13,18 +14,30 @@ class WebviewDetectService
     use HasDeviceDetection;
     use HasBrowserDetection;
 
-    protected string $userAgent = '';
+    protected false|string $userAgent = false;
 
-    public function forRequest(Request $request): bool
+    public function forRequest(Request $request): WebviewDetectService
     {
         $userAgent = $request->header('User-Agent', '');
 
-        return $this->forUserAgent($userAgent);
+        return $this;
     }
 
-    public function forUserAgent(string $userAgent): bool
+    public function forUserAgent(string $userAgent): WebviewDetectService
     {
         $this->userAgent = $userAgent;
+
+        return $this;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function isWebView(): bool
+    {
+        if (!$this->userAgent) {
+            throw new Exception("Webview detection userAgent not set");
+        }
 
         return ($this->isAndroidWebView() || $this->isAppleWebView());
     }

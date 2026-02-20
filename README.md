@@ -1,9 +1,9 @@
 # Laravel Webview Detect
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/rpwebdevelopment/webview-detect.svg?style=flat-square)](https://packagist.org/packages/rpwebdevelopment/webview-detect)
+![Packagist Version](https://img.shields.io/packagist/v/rpwebdevelopment/webview-detect)
+![Packagist Downloads](https://img.shields.io/packagist/dt/rpwebdevelopment/webview-detect)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/rpwebdevelopment/webview-detect/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/rpwebdevelopment/webview-detect/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/rpwebdevelopment/webview-detect/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/rpwebdevelopment/webview-detect/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/rpwebdevelopment/webview-detect.svg?style=flat-square)](https://packagist.org/packages/rpwebdevelopment/webview-detect)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blueviolet.svg)](https://github.com/rpwebdevelopment/webview-detect/blob/main/LICENSE.md)
 
 Package designed to handle parsing of User-Agent headers to determine if users are accessing applications vie WebView or not.
 

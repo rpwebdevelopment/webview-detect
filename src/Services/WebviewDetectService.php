@@ -18,7 +18,7 @@ class WebviewDetectService
 
     public function forRequest(Request $request): WebviewDetectService
     {
-        $userAgent = $request->header('User-Agent', '');
+        $this->userAgent = $request->header('User-Agent', '');
 
         return $this;
     }
